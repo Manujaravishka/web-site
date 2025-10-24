@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Portfolio — Dark Theme</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#060607;
+      --panel:#0f1214;
+      --muted:#9aa4ad;
+      --accent:#d6b76a; /* warm gold accent */
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --maxw:1150px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:
+      radial-gradient(700px 200px at 10% 8%, rgba(214,183,106,0.06), transparent),
+      linear-gradient(180deg,var(--bg), #07080a 80%); color:#eef3f7;}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:28px auto;padding:20px}
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#b07a2b);display:grid;place-items:center;font-weight:800;color:#101010}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);padding:8px 12px;border-radius:10px;font-weight:600}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+    .cta{background:linear-gradient(90deg,var(--accent),#b88634);color:#081018;padding:8px 12px;border-radius:10px;font-weight:700}
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:22px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:26px;border-radius:var(--radius);box-shadow:0 18px 50px rgba(2,6,23,0.6)}
+    .hero h1{font-size:40px;margin:0 0 10px 0;line-height:1.02}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .hero .btns{display:flex;gap:10px}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);font-weight:700;background:transparent}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#caa85a);color:#071018}
+    .hero-visual{position:relative;border-radius:12px;overflow:hidden;height:100%}
+    .hero-visual img{width:100%;display:block;object-fit:cover;height:100%}
+    /* Sections */
+    section{margin:18px 0;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .section-title h2{margin:0;font-size:20px}
+    .muted{color:var(--muted)}
+    /* About & Skills */
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    .about p{color:var(--muted)}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:700;color:var(--muted)}
+    /* Projects / Assignments / Certificates */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{padding:16px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:10px}
+    .card h3{margin:0 0 8px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .meta{font-size:13px;color:var(--muted);margin-top:10px;display:flex;justify-content:space-between;align-items:center}
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .gallery-grid img{width:100%;height:160px;object-fit:cover;border-radius:8px;cursor:pointer;display:block}
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:60;padding:20px}
+    .lightbox img{max-width:95%;max-height:90%;border-radius:10px}
+    .lb-close{position:absolute;top:18px;right:18px;color:#fff;font-size:20px;background:rgba(255,255,255,0.04);padding:8px;border-radius:8px;cursor:pointer}
+    /* Footer */
+    footer{opacity:0.9;text-align:center;color:var(--muted);margin-top:18px;padding-bottom:30px}
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .hero-visual{height:300px}
+      .two-col{grid-template-columns:1fr}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      .hero h1{font-size:26px}
+      .cards{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr}
+      nav{display:none}
+    }
+    /* small flourishes */
+    .hr{height:1px;background:linear-gradient(90deg,transparent,var(--muted),transparent);margin:14px 0;border-radius:2px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo">YN</div>
+        <div>
+          <div style="font-weight:800">Your Name</div>
+          <div style="font-size:13px;color:var(--muted)">Photographer • Frontend Creator</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#gallery">Gallery</a>
+        <a class="cta" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-card">
+        <h1>Hi — I'm Your Name.<br><span style="color:var(--accent)">I capture & craft beautiful stories.</span></h1>
+        <p class="muted">Professional photographer & frontend developer — I create visual stories for brands and personal projects. Based in Colombo. Available for commissions and collaborations.</p>
+        <div class="btns" style="margin-top:16px">
+          <a class="btn btn-primary" href="#projects">See Work</a>
+          <a class="btn" href="#contact">Get In Touch</a>
+          <a class="btn" href="#gallery">View Gallery</a>
+        </div>
+
+        <div class="hr"></div>
+
+        <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
+          <div style="display:flex;flex-direction:column">
+            <strong>Experience</strong>
+            <span class="muted">5+ years</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <strong>Specialty</strong>
+            <span class="muted">Portraits • Landscapes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- Replace with your hero photo -->
+        <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1400&auto=format&fit=crop" alt="Hero photo">
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title">
+        <h2>About</h2>
+        <div class="muted">— who I am</div>
+      </div>
+
+      <div class="two-col">
+        <div class="about">
+          <p class="muted">
+            I'm a creative professional who blends photography and frontend development.
+            I focus on strong composition, color, and performance so the final deliverables are both beautiful and usable.
+            I work with clients on editorial shoots, commercial campaigns, and personal projects.
+          </p>
+
+          <h3 style="margin-top:14px">Approach</h3>
+          <p class="muted">I prioritize planning, lightweight tooling, and clear communication. I deliver high-resolution assets plus web-ready optimized images and a clean gallery experience.</p>
+
+          <h3 style="margin-top:14px">Contact</h3>
+          <p class="muted">Email: <a href="mailto:youremail@example.com">youremail@example.com</a> • Phone: +94 7X XXX XXXX</p>
+        </div>
+
+        <aside style="padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);">
+          <h3 style="margin-top:0">Quick Facts</h3>
+          <ul class="muted" style="margin:8px 0 0 18px">
+            <li>Available for travel & remote work</li>
+            <li>Deliverables: RAW, JPG, Web-optimized</li>
+            <li>Languages: English, Sinhala</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="btn btn-primary" href="#contact">Hire me</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <div class="muted">— what I do well</div>
+      </div>
+
+      <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+        <div style="flex:1;min-width:260px">
+          <h3 style="margin-top:0">Photography</h3>
+          <div class="skills" style="margin-top:10px">
+            <div class="skill">Portrait</div>
+            <div class="skill">Landscape</div>
+            <div class="skill">Commercial</div>
+            <div class="skill">Event</div>
+            <div class="skill">Lighting</div>
+          </div>
+          <p class="muted" style="margin-top:12px">Experienced with studio & natural light, color grading, retouching and storytelling through images.</p>
+        </div>
+
+        <div style="flex:1;min-width:260px">
+          <h3 style="margin-top:0">Web / Production</h3>
+          <div class="skills" style="margin-top:10px">
+            <div class="skill">HTML & CSS</div>
+            <div class="skill">Responsive Design</div>
+            <div class="skill">Image Optimization</div>
+            <div class="skill">Accessibility</div>
+            <div class="skill">React (basic)</div>
+          </div>
+          <p class="muted" style="margin-top:12px">I prepare web-ready assets and small interactive galleries or portfolios when needed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <div class="muted">— selected works</div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1499084732479-de2c02d45fc4?q=80&w=1400&auto=format&fit=crop" alt="">
+          <h3>Campaign — City Portraits</h3>
+          <p class="muted">A photo campaign for a lifestyle brand. Full shoot, editing and gallery delivery.</p>
+          <div class="meta"><span>2024</span><span>Commercial</span></div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1400&auto=format&fit=crop" alt="">
+          <h3>Editorial — Nature Series</h3>
+          <p class="muted">A 10-image editorial project focused on natural textures and landscapes.</p>
+          <div class="meta"><span>2023</span><span>Editorial</span></div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop" alt="">
+          <h3>Product — Studio Shots</h3>
+          <p class="muted">Studio product photography with a focus on lighting and clean backgrounds.</p>
+          <div class="meta"><span>2022</span><span>Studio</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ASSIGNMENTS -->
+    <section id="assignments">
+      <div class="section-title">
+        <h2>Assignments</h2>
+        <div class="muted">— client and course assignments</div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1400&auto=format&fit=crop" alt="">
+          <h3>Assignment: Branding Shoot</h3>
+          <p class="muted">Brand shoot for a café chain — directional photography and asset handover.</p>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070f6b?q=80&w=1400&auto=format&fit=crop" alt="">
+          <h3>Assignment: Travel Story</h3>
+          <p class="muted">Short travel series documenting local culture and landscapes.</p>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1400&auto=format&fit=crop" alt="">
+          <h3>Assignment: E-commerce Photos</h3>
+          <p class="muted">Product photos optimized for web storefronts and thumbnails.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <div class="section-title">
+        <h2>Certificates</h2>
+        <div class="muted">— professional training</div>
+      </div>
+
+      <div class="cards" style="grid-template-columns:repeat(3,1fr);">
+        <article class="card">
+          <h3>Photography Masterclass</h3>
+          <p class="muted">Certificate in advanced photography techniques — 2021</p>
+        </article>
+        <article class="card">
+          <h3>Lighting & Studio</h3>
+          <p class="muted">Studio lighting workshop — 2022</p>
+        </article>
+        <article class="card">
+          <h3>Web Performance</h3>
+          <p class="muted">Course on image optimization and responsive delivery — 2024</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-title">
+        <h2>Gallery</h2>
+        <div class="muted">— selected photos</div>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Replace these images with your own; clicking opens lightbox -->
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop" alt="gallery-1">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop" alt="gallery-2">
+        <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=1200&auto=format&fit=crop" alt="gallery-3">
+        <img src="https://images.unsplash.com/photo-1443890923422-7819ed4101c0?q=80&w=1200&auto=format&fit=crop" alt="gallery-4">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop" alt="gallery-5">
+        <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?q=80&w=1200&auto=format&fit=crop" alt="gallery-6">
+        <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=80&w=1200&auto=format&fit=crop" alt="gallery-7">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop" alt="gallery-8">
+      </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <div class="muted">— let's work together</div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p class="muted">Interested in a shoot, collaboration or web gallery? Send a message and I’ll reply within 2 business days.</p>
+          <form onsubmit="event.preventDefault(); alert('Demo: message sent. Replace with real submission logic.');" style="margin-top:12px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <input required placeholder="Your name" />
+              <input type="email" required placeholder="Email" />
+            </div>
+            <textarea rows="5" placeholder="Message" style="width:100%;margin-top:10px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea>
+            <div style="margin-top:10px">
+              <button class="btn btn-primary" type="submit">Send message</button>
+            </div>
+          </form>
+        </div>
+
+        <aside style="padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);">
+          <h3 style="margin-top:0">Quick contact</h3>
+          <p class="muted">Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+          <p class="muted">Phone: +94 7X XXX XXXX</p>
+          <div style="margin-top:14px">
+            <strong>Location</strong>
+            <p class="muted" style="margin:6px 0 0">Colombo, Sri Lanka (willing to travel)</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Your Name • Built with HTML & CSS
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
+    <div class="lb-close" id="lbClose" aria-label="Close">✕</div>
+    <img id="lbImg" src="" alt="Lightbox image">
+  </div>
+
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href === '#' || href === '') return;
+        const t = document.querySelector(href);
+        if(t){
+          e.preventDefault();
+          t.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // Simple lightbox for gallery images
+    const galleryImgs = document.querySelectorAll('.gallery-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+
+    galleryImgs.forEach(img=>{
+      img.addEventListener('click', ()=>{
+        lbImg.src = img.src + '&q=90&w=2000'; // try to get larger copy from Unsplash query param
+        lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden','false');
+      });
+    });
+
+    function closeLB(){ lightbox.style.display = 'none'; lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; }
+    lbClose.addEventListener('click', closeLB);
+    lightbox.addEventListener('click', e=>{ if(e.target === lightbox) closeLB(); });
+    document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeLB(); });
+  </script>
+</body>
+</html>
