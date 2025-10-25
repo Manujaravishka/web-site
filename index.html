@@ -33,7 +33,7 @@
         }
 
         /* Dark Mode Variables */
-        .dark-mode {
+        body.dark-mode {
             --bg-color: #121212;
             --text-color: #e0e0e0;
             --card-bg: #1e1e1e;
@@ -176,7 +176,7 @@
             background-color: rgba(0, 0, 0, 0.1);
         }
 
-        .dark-mode .theme-toggle:hover {
+        body.dark-mode .theme-toggle:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -440,7 +440,7 @@
             animation: slideInUp 0.5s ease-out;
         }
 
-        .dark-mode .email-confirmation {
+        body.dark-mode .email-confirmation {
             background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
         }
 
@@ -474,7 +474,7 @@
             line-height: 1.6;
         }
 
-        .dark-mode .email-confirmation p {
+        body.dark-mode .email-confirmation p {
             color: #ccc;
         }
 
@@ -502,7 +502,7 @@
             display: none;
         }
 
-        .dark-mode .email-instructions {
+        body.dark-mode .email-instructions {
             background-color: #3a3a2a;
         }
 
@@ -523,7 +523,7 @@
             color: #666;
         }
 
-        .dark-mode .email-instructions ol {
+        body.dark-mode .email-instructions ol {
             color: #ccc;
         }
 
@@ -537,7 +537,7 @@
             background: var(--light);
         }
 
-        .dark-mode .about-us {
+        body.dark-mode .about-us {
             background: #2a2a2a;
         }
 
@@ -693,7 +693,7 @@
             position: relative;
         }
 
-        .dark-mode .sri-lanka {
+        body.dark-mode .sri-lanka {
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a2a 100%);
         }
 
@@ -899,7 +899,7 @@
             background-color: var(--light);
         }
 
-        .dark-mode .gallery {
+        body.dark-mode .gallery {
             background-color: #2a2a2a;
         }
 
@@ -1160,7 +1160,7 @@
             background-color: var(--light);
         }
 
-        .dark-mode .services {
+        body.dark-mode .services {
             background-color: #2a2a2a;
         }
 
@@ -1265,7 +1265,7 @@
             background-color: var(--light);
         }
 
-        .dark-mode .contact {
+        body.dark-mode .contact {
             background-color: #2a2a2a;
         }
 
@@ -1321,7 +1321,7 @@
             display: none;
         }
 
-        .dark-mode .email-success {
+        body.dark-mode .email-success {
             background-color: #1e3a2e;
             color: #a3e9b4;
             border-color: #2a4a3a;
@@ -1337,7 +1337,7 @@
             display: none;
         }
 
-        .dark-mode .email-error {
+        body.dark-mode .email-error {
             background-color: #3a1e22;
             color: #e9a3a3;
             border-color: #4a2a2a;
@@ -1650,7 +1650,7 @@
     <header class="main-header">
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="https://i.ibb.co/2qYfGvM/panda-removebg-preview.png" alt="Forinars Travel Logo" class="logo-img">
+                <img src="asest/Hero _section/panda-removebg-preview.png" alt="Forinars Travel Logo" class="logo-img">
                 <span>Forinars Travel</span>
             </a>
 
@@ -1666,6 +1666,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <br><br>
                 
                 <li><a href="#comprehensive-booking" class="btn">Book Now</a></li>
                 <br> <br> <br><li>
@@ -2158,7 +2159,7 @@
                 <button class="filter-btn" data-filter="mountain">Mountains</button>
                 <button class="filter-btn" data-filter="city">Cities</button>
                 <button class="filter-btn" data-filter="culture">Culture</button>
-                <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+                <button class="filter-btn" data-filter="wildlife">Bus</button>
             </div>
             
             <!-- Gallery Grid -->
@@ -2521,16 +2522,16 @@
     </footer>
 
     <script>
-        // Dark Mode Functionality
+        // Dark Mode Functionality - Set default to light mode
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
         
         // Check for saved theme preference or use system preference
         function checkThemePreference() {
             const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            // Default to light mode if no preference is saved
+            if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
