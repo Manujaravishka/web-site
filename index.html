@@ -1000,159 +1000,242 @@
         .gallery-cta {
             text-align: center;
         }
-/* --- Blog section basics --- */
-.blog {
-  padding: 80px 0;
-  background-color: var(--card-bg, #fff);
-  overflow-x: hidden;
-}
-.blog-subtitle {
-  text-align: center;
-  color: var(--text-color, #333);
-  margin-bottom: 40px;
-  font-size: 1.05rem;
-}
 
-/* Carousel */
-.blog-carousel-container { position: relative; margin: 0 auto; overflow: hidden; }
-.blog-carousel {
-  display: flex;
-  gap: 20px;
-  padding: 10px 5px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  cursor: grab;
-}
-.blog-carousel::-webkit-scrollbar { display: none; }
-.blog-carousel:active { cursor: grabbing; }
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-/* Card */
-.blog-card {
-  flex: 0 0 320px;            /* width of each card */
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  background: var(--card-bg, #fff);
-  transition: transform .25s ease;
-}
-.blog-card:hover { transform: translateY(-6px); }
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* IMPORTANT: show full image (no crop) while maintaining card box */
-/* Make image container center the image and allow it to scale down */
-.blog-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 220px;          /* card image area height */
-  background: #f5f5f5;    /* neutral bg for images with different aspect ratios */
-  position: relative;
-  overflow: hidden;
-}
-.blog-image img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;    /* <-- show full image */
-  transition: transform .25s ease;
-  display: block;
-}
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
 
-/* Slight hover zoom (keeps whole image visible) */
-.blog-card:hover .blog-image img { transform: scale(1.02); }
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
 
-/* Overlay label */
-.blog-image .overlay {
-  position: absolute;
-  inset: 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  pointer-events:none;
-  opacity:0;
-  transition:opacity .2s ease;
-}
-.blog-image:hover .overlay, .blog-image:focus .overlay { opacity:1; }
-.view-label {
-  pointer-events:none;
-  color:#fff;
-  font-weight:600;
-  background: rgba(0,0,0,0.45);
-  padding:6px 12px;
-  border-radius:999px;
-}
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
 
-/* Modal / Lightbox */
-.image-modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.85);
-  z-index: 2000;
-  padding: 20px;
-}
-.image-modal[aria-hidden="false"] { display: flex; }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
 
-/* Inner */
-.modal-inner {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  max-width: 95%;
-  max-height: 90%;
-}
-.image-modal img#modalImage {
-  max-width: 100%;
-  max-height: 80vh;
-  width: auto;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 8px 30px rgba(0,0,0,.6);
-}
+        .lightbox-close:hover {
+            color: var(--secondary);
+        }
 
-/* Caption */
-.modal-caption { color:#ddd; text-align:center; max-width:90%; }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 24px;
+        }
 
-/* Close & nav */
-.modal-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: transparent;
-  color: #fff;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  padding: 8px;
-}
-.modal-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.45);
-  color: #fff;
-  border: none;
-  width: 44px;
-  height: 60px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.6rem;
-}
-.modal-prev { left: 18px; }
-.modal-next { right: 18px; }
+        .lightbox-nav:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
 
-/* Responsive */
-@media (max-width: 520px) {
-  .blog-card { flex: 0 0 260px; }
-  .blog-image { height: 160px; }
-  .modal-nav { width: 36px; height: 52px; font-size: 1.25rem; }
-}
+        .lightbox-prev {
+            left: 30px;
+        }
 
+        .lightbox-next {
+            right: 30px;
+        }
+
+        /* Blog section basics */
+        .blog {
+            padding: 80px 0;
+            background-color: var(--card-bg, #fff);
+            overflow-x: hidden;
+        }
+        .blog-subtitle {
+            text-align: center;
+            color: var(--text-color, #333);
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+        }
+
+        /* Carousel */
+        .blog-carousel-container { position: relative; margin: 0 auto; overflow: hidden; }
+        .blog-carousel {
+            display: flex;
+            gap: 20px;
+            padding: 10px 5px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+        .blog-carousel::-webkit-scrollbar { display: none; }
+        .blog-carousel:active { cursor: grabbing; }
+
+        /* Card */
+        .blog-card {
+            flex: 0 0 320px;            /* width of each card */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: var(--card-bg, #fff);
+            transition: transform .25s ease;
+        }
+        .blog-card:hover { transform: translateY(-6px); }
+
+        /* IMPORTANT: show full image (no crop) while maintaining card box */
+        /* Make image container center the image and allow it to scale down */
+        .blog-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 220px;          /* card image area height */
+            background: #f5f5f5;    /* neutral bg for images with different aspect ratios */
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;    /* <-- show full image */
+            transition: transform .25s ease;
+            display: block;
+        }
+
+        /* Slight hover zoom (keeps whole image visible) */
+        .blog-card:hover .blog-image img { transform: scale(1.02); }
+
+        /* Overlay label */
+        .blog-image .overlay {
+            position: absolute;
+            inset: 0;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            pointer-events:none;
+            opacity:0;
+            transition:opacity .2s ease;
+        }
+        .blog-image:hover .overlay, .blog-image:focus .overlay { opacity:1; }
+        .view-label {
+            pointer-events:none;
+            color:#fff;
+            font-weight:600;
+            background: rgba(0,0,0,0.45);
+            padding:6px 12px;
+            border-radius:999px;
+        }
+
+        /* Modal / Lightbox */
+        .image-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            padding: 20px;
+        }
+        .image-modal[aria-hidden="false"] { display: flex; }
+
+        /* Inner */
+        .modal-inner {
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:12px;
+            max-width: 95%;
+            max-height: 90%;
+        }
+        .image-modal img#modalImage {
+            max-width: 100%;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.6);
+        }
+
+        /* Caption */
+        .modal-caption { color:#ddd; text-align:center; max-width:90%; }
+
+        /* Close & nav */
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: transparent;
+            color: #fff;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.45);
+            color: #fff;
+            border: none;
+            width: 44px;
+            height: 60px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.6rem;
+        }
+        .modal-prev { left: 18px; }
+        .modal-next { right: 18px; }
+
+        /* Responsive */
+        @media (max-width: 520px) {
+            .blog-card { flex: 0 0 260px; }
+            .blog-image { height: 160px; }
+            .modal-nav { width: 36px; height: 52px; font-size: 1.25rem; }
+        }
 
         /* Services Section */
         .services {
@@ -1413,89 +1496,6 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Lightbox Modal */
-        .lightbox-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox-modal.active {
-            display: flex;
-            opacity: 1;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-        }
-
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 8px;
-        }
-
-        .lightbox-caption {
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .lightbox-close:hover {
-            color: var(--secondary);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 24px;
-        }
-
-        .lightbox-nav:hover {
-            background-color: rgba(255,255,255,0.3);
-        }
-
-        .lightbox-prev {
-            left: 30px;
-        }
-
-        .lightbox-next {
-            right: 30px;
-        }
-
         /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-links {
@@ -1594,29 +1594,12 @@
             }
 
             /* Blog Responsive */
-            .featured-post {
-                flex-direction: column;
+            .blog-card {
+                flex: 0 0 260px;
             }
             
-            .featured-image {
-                height: 300px;
-            }
-            
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-content {
-                padding: 25px;
-            }
-            
-            .featured-content h3 {
-                font-size: 1.5rem;
-            }
-            
-            .post-meta {
-                flex-direction: column;
-                gap: 10px;
+            .blog-image {
+                height: 160px;
             }
         }
 
@@ -1650,7 +1633,7 @@
     <header class="main-header">
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="asest/Hero _section/panda-removebg-preview.png" alt="Forinars Travel Logo" class="logo-img">
+                <img src="https://via.placeholder.com/105x70" alt="Forinars Travel Logo" class="logo-img">
                 <span>Forinars Travel</span>
             </a>
 
@@ -2155,11 +2138,11 @@
             <!-- Gallery Filter -->
             <div class="gallery-filter">
                 <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="beach">Beaches</button>
-                <button class="filter-btn" data-filter="mountain">Mountains</button>
-                <button class="filter-btn" data-filter="city">Cities</button>
+                <button class="filter-btn" data-filter="beach">Beach</button>
+                <button class="filter-btn" data-filter="mountain">Mountain</button>
+                <button class="filter-btn" data-filter="city">City</button>
                 <button class="filter-btn" data-filter="culture">Culture</button>
-                <button class="filter-btn" data-filter="wildlife">Bus</button>
+                <button class="filter-btn" data-filter="wildlife">Wildlife</button>
             </div>
             
             <!-- Gallery Grid -->
@@ -2277,6 +2260,21 @@
         </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="">
+            <div class="lightbox-caption"></div>
+        </div>
+        <button class="lightbox-nav lightbox-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
     <!-- Blog Section -->
     <section id="blog" class="blog">
         <div class="container">
@@ -2289,7 +2287,7 @@
                     <!-- Image-only Post 1 -->
                     <div class="blog-card">
                         <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
-                            <img src="asest/post/travel1.png" alt="Travel Inspiration">
+                            <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=80" alt="Beach Paradise">
                             <div class="overlay"><span class="view-label">View</span></div>
                         </div>
                     </div>
@@ -2297,7 +2295,7 @@
                     <!-- Image-only Post 2 -->
                     <div class="blog-card">
                         <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
-                            <img src="asest/post/travel2.png" alt="Hiking Adventure">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Mountain Trek">
                             <div class="overlay"><span class="view-label">View</span></div>
                         </div>
                     </div>
@@ -2305,7 +2303,7 @@
                     <!-- Image-only Post 3 -->
                     <div class="blog-card">
                         <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
-                            <img src="asest/post/travel3.png" alt="Local Cuisine">
+                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80" alt="Ancient Temple">
                             <div class="overlay"><span class="view-label">View</span></div>
                         </div>
                     </div>
@@ -2313,36 +2311,12 @@
                     <!-- Image-only Post 4 -->
                     <div class="blog-card">
                         <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
-                            <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=80" alt="Beach Paradise">
-                            <div class="overlay"><span class="view-label">View</span></div>
-                        </div>
-                    </div>
-
-                    <!-- Image-only Post 5 -->
-                    <div class="blog-card">
-                        <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
-                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Mountain Trek">
-                            <div class="overlay"><span class="view-label">View</span></div>
-                        </div>
-                    </div>
-
-                    <!-- Image-only Post 6 -->
-                    <div class="blog-card">
-                        <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
-                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80" alt="Ancient Temple">
-                            <div class="overlay"><span class="view-label">View</span></div>
-                        </div>
-                    </div>
-
-                    <!-- Image-only Post 7 -->
-                    <div class="blog-card">
-                        <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
                             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Tropical Beach">
                             <div class="overlay"><span class="view-label">View</span></div>
                         </div>
                     </div>
 
-                    <!-- Image-only Post 8 -->
+                    <!-- Image-only Post 5 -->
                     <div class="blog-card">
                         <div class="blog-image" tabindex="0" role="button" aria-label="Open image">
                             <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80" alt="Cultural Festival">
@@ -2996,6 +2970,7 @@ This message was sent through the Forinars Travale website contact form.`;
         const closeBtn = lightboxModal.querySelector('.lightbox-close');
         const prevBtn = lightboxModal.querySelector('.lightbox-prev');
         const nextBtn = lightboxModal.querySelector('.lightbox-next');
+        const viewMoreBtn = document.getElementById('viewMoreGallery');
 
         let currentImageIndex = 0;
         let filteredImages = [];
@@ -3019,6 +2994,9 @@ This message was sent through the Forinars Travale website contact form.`;
                 });
             });
         });
+
+        // Initialize filteredImages with all gallery items
+        filteredImages = Array.from(galleryItems);
 
         // Open lightbox when gallery item is clicked
         galleryItems.forEach((item, index) => {
@@ -3058,12 +3036,21 @@ This message was sent through the Forinars Travale website contact form.`;
 
         function showNextImage() {
             currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
-            openLightbox();
+            updateLightboxImage();
         }
 
         function showPrevImage() {
             currentImageIndex = (currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
-            openLightbox();
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const imgSrc = filteredImages[currentImageIndex].querySelector('img').src;
+            const imgTitle = filteredImages[currentImageIndex].querySelector('.gallery-content h3').textContent;
+            const imgLocation = filteredImages[currentImageIndex].querySelector('.gallery-content p').textContent;
+            
+            lightboxImg.src = imgSrc;
+            lightboxCaption.textContent = `${imgTitle} - ${imgLocation}`;
         }
 
         // Event listeners for lightbox controls
@@ -3092,7 +3079,7 @@ This message was sent through the Forinars Travale website contact form.`;
         });
 
         // View More Gallery Button
-        document.getElementById('viewMoreGallery').addEventListener('click', () => {
+        viewMoreBtn.addEventListener('click', () => {
             // In a real implementation, this would load more gallery items
             // For this example, we'll just scroll to the gallery section
             document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
