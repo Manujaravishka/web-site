@@ -170,6 +170,7 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s;
+            margin-left: 10px;
         }
 
         .theme-toggle:hover {
@@ -193,6 +194,13 @@
         .nav-links .btn:hover {
             background: var(--secondary);
             color: white;
+        }
+
+        /* Header controls - mobile menu and theme toggle */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Mobile button */
@@ -229,6 +237,10 @@
 
             .nav-links li {
                 margin: 10px 0;
+            }
+            
+            .header-controls {
+                display: flex;
             }
         }
 
@@ -1637,9 +1649,14 @@
                 <span>Forinars Travel</span>
             </a>
 
-            <button class="mobile-menu-btn" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
 
             <ul class="nav-links" id="nav-menu">
                 <li><a href="#">Home</a></li>
@@ -1649,14 +1666,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <br><br>
-                
                 <li><a href="#comprehensive-booking" class="btn">Book Now</a></li>
-                <br> <br> <br><li>
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                    </button>
-                </li>
             </ul>
         </div>
     </header>
