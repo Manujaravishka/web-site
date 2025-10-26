@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceylon Panda - Your Gateway to Sri Lanka</title>
+    <title>Forinars Travale - Your Gateway to the World</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset and Base Styles */
@@ -21,7 +21,6 @@
             --light: #ecf0f1;
             --dark: #2c3e50;
             --success: #2ecc71;
-            
             --warning: #f39c12;
             --sri-lanka: #FF9933;
             --bg-color: #f9f9f9;
@@ -32,8 +31,6 @@
             --border-color: #ddd;
             --shadow: rgba(0, 0, 0, 0.1);
         }
-
-
 
         /* Dark Mode Variables */
         body.dark-mode {
@@ -1080,7 +1077,7 @@
             transform: translateY(-6px); 
         }
 
-        /* FIXED: Proper image display without cropping - changed object-fit to contain */
+        /* FIXED: Proper image display without unnecessary zoom */
         .blog-image {
             width: 100%;
             height: 220px;
@@ -1091,14 +1088,14 @@
         .blog-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Changed from cover to contain to show full image */
+            object-fit: cover;
             transition: transform .25s ease;
             display: block;
         }
 
         /* Slight hover zoom */
         .blog-card:hover .blog-image img { 
-            transform: scale(1.02); /* Reduced zoom to keep images clear */
+            transform: scale(1.05); 
         }
 
         /* Overlay label */
@@ -1597,7 +1594,7 @@
     <header class="main-header">
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="asest/Hero _section/panda-removebg-preview.png" alt="Ceylon Panda Travel Logo" class="logo-img">
+                <img src="asest/Hero _section/panda-removebg-preview.png" alt="Forinars Travel Logo" class="logo-img">
                 <span>Ceylon Panda</span>
             </a>
 
@@ -1946,7 +1943,7 @@
     <section class="about-us" id="about">
         <div class="container about-container">
             <div class="about-image">
-                <img src="https://i.pinimg.com/736x/93/4f/15/934f1599f67cb5386a12540db37494b2.jpg" alt="Ella & Nine Arch Bridge" alt="Ceylon Panda Travel Team">
+                <img src="https://i.pinimg.com/736x/93/4f/15/934f1599f67cb5386a12540db37494b2.jpg" alt="Ella & Nine Arch Bridge" alt="Forinars Travel Team">
             </div>
 
             <div class="about-content">
@@ -2466,17 +2463,17 @@
             <div class="testimonial-slider">
                 <div class="testimonial-slide active">
                     <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="client-img">
-                    <p class="testimonial-text">"Our trip to Bali organized by Ceylon Panda was absolutely perfect. Every detail was taken care of, and we had the most memorable experience. Highly recommended!"</p>
+                    <p class="testimonial-text">"Our trip to Bali organized by Forinars Travale was absolutely perfect. Every detail was taken care of, and we had the most memorable experience. Highly recommended!"</p>
                     <p class="client-name">- Sarah Johnson</p>
                 </div>
                 <div class="testimonial-slide">
                     <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client" class="client-img">
-                    <p class="testimonial-text">"The personalized service we received was exceptional. Ceylon Panda understood exactly what we were looking for and delivered beyond our expectations."</p>
+                    <p class="testimonial-text">"The personalized service we received was exceptional. Forinars Travale understood exactly what we were looking for and delivered beyond our expectations."</p>
                     <p class="client-name">- Michael Rodriguez</p>
                 </div>
                 <div class="testimonial-slide">
                     <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Client" class="client-img">
-                    <p class="testimonial-text">"I've traveled with many agencies, but Ceylon Panda stands out for their attention to detail and customer care. Our Paris trip was magical!"</p>
+                    <p class="testimonial-text">"I've traveled with many agencies, but Forinars Travale stands out for their attention to detail and customer care. Our Paris trip was magical!"</p>
                     <p class="client-name">- Emily Chen</p>
                 </div>
                 <div class="slider-controls">
@@ -2532,7 +2529,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Ceylon Panda</h3>
+                    <h3>Forinars Travale</h3>
                     <p>Your trusted partner in creating unforgettable travel experiences around the world.</p>
                 </div>
                 <div class="footer-column">
@@ -2568,7 +2565,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Ceylon Panda. All rights reserved. "Developed by Wave Link"</p>
+                <p>&copy; 2025 Forinars Travale. All rights reserved. "Developed by Wave Link"</p>
             </div>
         </div>
     </footer>
@@ -2819,7 +2816,7 @@ Travel Date: ${date}
 Preferred Time: ${time}
 Special Requirements: ${requests}
 
-This booking was submitted through the Ceylon Panda website.`;
+This booking was submitted through the Forinars Travale website.`;
 
             sendEmail(subject, body);
         });
@@ -2847,7 +2844,7 @@ End Date: ${endDate}
 Number of Travelers: ${travelers}
 Budget Range: ${budget}
 
-This booking was submitted through the Ceylon Panda website.`;
+This booking was submitted through the Forinars Travale website.`;
 
             sendEmail(subject, body);
         });
@@ -2873,7 +2870,7 @@ Number of Participants: ${participants}
 Duration: ${duration} hours
 Special Requirements: ${notes}
 
-This booking was submitted through the Ceylon Panda website.`;
+This booking was submitted through the Forinars Travale website.`;
 
             sendEmail(subject, body);
         });
@@ -2909,7 +2906,7 @@ Shopping Interests: ${interests}
 Budget: $${budget}
 Special Requests: ${notes}
 
-This request was submitted through the Ceylon Panda website.`;
+This request was submitted through the Forinars Travale website.`;
 
             sendEmail(subject, body);
         });
@@ -2923,7 +2920,7 @@ This request was submitted through the Ceylon Panda website.`;
                 const subject = `Destination Booking Request - ${destination}`;
                 const body = `I would like to book a trip to ${destination}. Please contact me with more details and availability.
 
-This booking was requested through the Ceylon Panda website.`;
+This booking was requested through the Forinars Travale website.`;
 
                 sendEmail(subject, body);
             });
@@ -2946,7 +2943,7 @@ Email: ${email}
 Subject: ${subject}
 Message: ${message}
 
-This message was sent through the Ceylon Panda website contact form.`;
+This message was sent through the Forinars Travale website contact form.`;
 
             sendEmail(emailSubject, emailBody);
             
