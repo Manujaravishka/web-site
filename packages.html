@@ -148,10 +148,10 @@
             cursor: pointer;
         }
 
-        /* Hero Section - FIXED */
+        /* Hero Section */
         .hero {
             position: relative;
-            min-height: 100vh; /* Changed to full viewport height */
+            min-height: 100vh;
             display: flex;
             align-items: center;
             color: white;
@@ -162,7 +162,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Added for better visual effect */
+            background-attachment: fixed;
         }
 
         .hero-content {
@@ -360,6 +360,46 @@
         .package-features i {
             margin-right: 10px;
             color: var(--success);
+        }
+
+        .included-excluded {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.03);
+            border-radius: 5px;
+        }
+
+        .included-excluded h4 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .included-excluded ul {
+            list-style-type: none;
+        }
+
+        .included-excluded li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .included-excluded .included li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .included-excluded .excluded li:before {
+            content: "✗";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 8px;
         }
 
         /* Testimonials */
@@ -603,6 +643,10 @@
                 max-width: 200px;
                 text-align: center;
             }
+
+            .included-excluded {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -633,7 +677,7 @@
         </div>
     </header>
 
-    <!-- Hero Section - FIXED -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
             <h1>Discover Sri Lanka with Ceylon Panda</h1>
@@ -649,150 +693,156 @@
             
             <div class="package-filter">
                 <button class="filter-btn active" data-filter="all">All Packages</button>
-                <button class="filter-btn" data-filter="adventure">Adventure</button>
                 <button class="filter-btn" data-filter="cultural">Cultural</button>
-                <button class="filter-btn" data-filter="beach">Beach</button>
                 <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+                <button class="filter-btn" data-filter="beach">Beach</button>
+                <button class="filter-btn" data-filter="adventure">Adventure</button>
             </div>
             
             <div class="packages-grid">
-                <!-- Package 1 -->
-                <div class="package-card" data-category="cultural">
+                <!-- Package 1 from Excel (3 Days) -->
+                <div class="package-card" data-category="cultural wildlife">
                     <div class="package-image">
-                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cultural Triangle Tour">
+                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Sigiriya Rock Fortress">
                         <div class="package-badge">Popular</div>
                     </div>
                     <div class="package-content">
-                        <h3>Cultural Triangle Tour</h3>
+                        <h3>3 Days Cultural & Wildlife Tour</h3>
                         <div class="package-meta">
-                            <span><i class="far fa-clock"></i> 5 Days</span>
-                            <span><i class="fas fa-users"></i> 2-10 People</span>
+                            <span><i class="far fa-clock"></i> 3 Days / 2 Nights</span>
+                            <span><i class="fas fa-road"></i> 550km</span>
                         </div>
-                        <div class="package-price">$450 <span>/person</span></div>
+                        <div class="package-price">$299 <span>/person</span></div>
+                        
+                        <div class="included-excluded">
+                            <div class="included">
+                                <h4><i class="fas fa-check-circle"></i> Included</h4>
+                                <ul>
+                                    <li>Reception at the airport</li>
+                                    <li>Transportation by air-conditioned vehicle</li>
+                                    <li>Accommodation in hotels on sharing basis</li>
+                                    <li>Meals on B/B basis (Breakfast included)</li>
+                                </ul>
+                            </div>
+                            <div class="excluded">
+                                <h4><i class="fas fa-times-circle"></i> Excluded</h4>
+                                <ul>
+                                    <li>International Air Fare</li>
+                                    <li>Entrance fees to parks and archaeological sites</li>
+                                    <li>Meals other than mentioned under includes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                         <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Sigiriya Rock Fortress</li>
-                            <li><i class="fas fa-check"></i> Ancient City of Polonnaruwa</li>
                             <li><i class="fas fa-check"></i> Dambulla Cave Temple</li>
+                            <li><i class="fas fa-check"></i> Sigiriya Rock Fortress</li>
+                            <li><i class="fas fa-check"></i> Minneriya National Park Safari</li>
+                            <li><i class="fas fa-check"></i> Pinnawala Elephant Orphanage</li>
                             <li><i class="fas fa-check"></i> Kandy Temple of the Tooth</li>
                         </ul>
-                        <button class="btn book-package-btn" style="width: 100%;" data-package="Cultural Triangle Tour">Book Now</button>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="3 Days Cultural & Wildlife Tour">Book Now</button>
                     </div>
                 </div>
                 
-                <!-- Package 2 -->
-                <div class="package-card" data-category="adventure">
+                <!-- Package 2 from Excel (5 Days) -->
+                <div class="package-card" data-category="cultural adventure beach">
                     <div class="package-image">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Hill Country Adventure">
-                        <div class="package-badge">Adventure</div>
+                        <img src="https://images.unsplash.com/photo-1590239926044-4131f5d0654d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Nine Arch Bridge Ella">
+                        <div class="package-badge">Best Seller</div>
                     </div>
                     <div class="package-content">
-                        <h3>Hill Country Adventure</h3>
+                        <h3>5 Days Cultural Triangle & Hill Country</h3>
                         <div class="package-meta">
-                            <span><i class="far fa-clock"></i> 7 Days</span>
-                            <span><i class="fas fa-users"></i> 2-8 People</span>
+                            <span><i class="far fa-clock"></i> 5 Days / 4 Nights</span>
+                            <span><i class="fas fa-road"></i> 1000km</span>
                         </div>
-                        <div class="package-price">$680 <span>/person</span></div>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Hiking in Horton Plains</li>
-                            <li><i class="fas fa-check"></i> Train Ride to Ella</li>
-                            <li><i class="fas fa-check"></i> Tea Plantation Tours</li>
-                            <li><i class="fas fa-check"></i> Waterfall Visits</li>
-                        </ul>
-                        <button class="btn book-package-btn" style="width: 100%;" data-package="Hill Country Adventure">Book Now</button>
-                    </div>
-                </div>
-                
-                <!-- Package 3 -->
-                <div class="package-card" data-category="beach">
-                    <div class="package-image">
-                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Beach Paradise">
-                        <div class="package-badge">Relaxation</div>
-                    </div>
-                    <div class="package-content">
-                        <h3>Beach Paradise Tour</h3>
-                        <div class="package-meta">
-                            <span><i class="far fa-clock"></i> 6 Days</span>
-                            <span><i class="fas fa-users"></i> 2-12 People</span>
+                        <div class="package-price">$549 <span>/person</span></div>
+                        
+                        <div class="included-excluded">
+                            <div class="included">
+                                <h4><i class="fas fa-check-circle"></i> Included</h4>
+                                <ul>
+                                    <li>Reception at the airport</li>
+                                    <li>Transportation by air-conditioned vehicle</li>
+                                    <li>Accommodation in hotels on sharing basis</li>
+                                    <li>Meals on B/B basis (Breakfast included)</li>
+                                </ul>
+                            </div>
+                            <div class="excluded">
+                                <h4><i class="fas fa-times-circle"></i> Excluded</h4>
+                                <ul>
+                                    <li>International Air Fare</li>
+                                    <li>Entrance fees to parks and archaeological sites</li>
+                                    <li>Meals other than mentioned under includes</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="package-price">$520 <span>/person</span></div>
+                        
                         <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Negombo Beach City</li>
+                            <li><i class="fas fa-check"></i> Dambulla & Sigiriya</li>
+                            <li><i class="fas fa-check"></i> Pinnawala Elephant Orphanage</li>
+                            <li><i class="fas fa-check"></i> Kandy Temple & Cultural Show</li>
+                            <li><i class="fas fa-check"></i> Ella & Nine Arch Bridge</li>
+                            <li><i class="fas fa-check"></i> Nuwara Eliya Hill Station</li>
                             <li><i class="fas fa-check"></i> Mirissa Beach & Whale Watching</li>
-                            <li><i class="fas fa-check"></i> Unawatuna Beach Relaxation</li>
-                            <li><i class="fas fa-check"></i> Galle Fort Exploration</li>
-                            <li><i class="fas fa-check"></i> Seafood Dining Experience</li>
+                            <li><i class="fas fa-check"></i> Colombo City Tour</li>
                         </ul>
-                        <button class="btn book-package-btn" style="width: 100%;" data-package="Beach Paradise Tour">Book Now</button>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="5 Days Cultural Triangle & Hill Country">Book Now</button>
                     </div>
                 </div>
                 
-                <!-- Package 4 -->
-                <div class="package-card" data-category="wildlife">
+                <!-- Package 3 from Excel (7 Days) -->
+                <div class="package-card" data-category="adventure wildlife beach">
                     <div class="package-image">
                         <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Wildlife Safari">
-                        <div class="package-badge">Safari</div>
+                        <div class="package-badge">Premium</div>
                     </div>
                     <div class="package-content">
-                        <h3>Wildlife Safari Adventure</h3>
+                        <h3>7 Days Comprehensive Sri Lanka Tour</h3>
                         <div class="package-meta">
-                            <span><i class="far fa-clock"></i> 4 Days</span>
-                            <span><i class="fas fa-users"></i> 2-6 People</span>
+                            <span><i class="far fa-clock"></i> 7 Days / 6 Nights</span>
+                            <span><i class="fas fa-road"></i> 1500km</span>
                         </div>
-                        <div class="package-price">$380 <span>/person</span></div>
+                        <div class="package-price">$799 <span>/person</span></div>
+                        
+                        <div class="included-excluded">
+                            <div class="included">
+                                <h4><i class="fas fa-check-circle"></i> Included</h4>
+                                <ul>
+                                    <li>Reception at the airport</li>
+                                    <li>Transportation by air-conditioned vehicle</li>
+                                    <li>Accommodation in hotels on sharing basis</li>
+                                    <li>Meals on B/B basis (Breakfast included)</li>
+                                </ul>
+                            </div>
+                            <div class="excluded">
+                                <h4><i class="fas fa-times-circle"></i> Excluded</h4>
+                                <ul>
+                                    <li>International Air Fare</li>
+                                    <li>Entrance fees to parks and archaeological sites</li>
+                                    <li>Meals other than mentioned under includes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                         <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Yala National Park Safari</li>
-                            <li><i class="fas fa-check"></i> Udawalawe Elephant Sanctuary</li>
-                            <li><i class="fas fa-check"></i> Bird Watching Tours</li>
-                            <li><i class="fas fa-check"></i> Jungle Camping Experience</li>
+                            <li><i class="fas fa-check"></i> Kandy & Temple of the Tooth</li>
+                            <li><i class="fas fa-check"></i> Ella & Nine Arch Bridge</li>
+                            <li><i class="fas fa-check"></i> Nuwara Eliya Hill Station</li>
+                            <li><i class="fas fa-check"></i> Trincomalee & Pigeon Island</li>
+                            <li><i class="fas fa-check"></i> Ridiyagama Safari Park</li>
+                            <li><i class="fas fa-check"></i> Mirissa Beach & Whale Watching</li>
+                            <li><i class="fas fa-check"></i> Colombo City Tour</li>
                         </ul>
-                        <button class="btn book-package-btn" style="width: 100%;" data-package="Wildlife Safari Adventure">Book Now</button>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="7 Days Comprehensive Sri Lanka Tour">Book Now</button>
                     </div>
                 </div>
                 
-                <!-- Package 5 -->
-                <div class="package-card" data-category="cultural">
-                    <div class="package-image">
-                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Spiritual Journey">
-                        <div class="package-badge">Spiritual</div>
-                    </div>
-                    <div class="package-content">
-                        <h3>Spiritual Journey</h3>
-                        <div class="package-meta">
-                            <span><i class="far fa-clock"></i> 5 Days</span>
-                            <span><i class="fas fa-users"></i> 2-10 People</span>
-                        </div>
-                        <div class="package-price">$420 <span>/person</span></div>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Temple of the Sacred Tooth Relic</li>
-                            <li><i class="fas fa-check"></i> Ancient Buddhist Monasteries</li>
-                            <li><i class="fas fa-check"></i> Meditation Sessions</li>
-                            <li><i class="fas fa-check"></i> Traditional Healing Practices</li>
-                        </ul>
-                        <button class="btn book-package-btn" style="width: 100%;" data-package="Spiritual Journey">Book Now</button>
-                    </div>
-                </div>
                 
-                <!-- Package 6 -->
-                <div class="package-card" data-category="adventure">
-                    <div class="package-image">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Mountain Trekking">
-                        <div class="package-badge">Trekking</div>
-                    </div>
-                    <div class="package-content">
-                        <h3>Mountain Trekking Expedition</h3>
-                        <div class="package-meta">
-                            <span><i class="far fa-clock"></i> 8 Days</span>
-                            <span><i class="fas fa-users"></i> 2-6 People</span>
-                        </div>
-                        <div class="package-price">$750 <span>/person</span></div>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Adam's Peak Sunrise Hike</li>
-                            <li><i class="fas fa-check"></i> Knuckles Mountain Range</li>
-                            <li><i class="fas fa-check"></i> Waterfall Rappelling</li>
-                            <li><i class="fas fa-check"></i> Camping Under the Stars</li>
-                        </ul>
-                        <button class="btn book-package-btn" style="width: 100%;" data-package="Mountain Trekking Expedition">Book Now</button>
-                    </div>
-                </div>
+                
+               
             </div>
         </div>
     </section>
@@ -966,7 +1016,7 @@
                 
                 // Filter package cards
                 packageCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
                         card.style.display = 'block';
                     } else {
                         card.style.display = 'none';
