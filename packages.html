@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceylon Panda - Exclusive Travel Packages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --sri-lanka: #FF9933;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --header-bg: #ffffff;
+            --footer-bg: #2c3e50;
+            --border-color: #ddd;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --header-bg: #1e1e1e;
+            --footer-bg: #121212;
+            --border-color: #333;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--header-bg);
+            box-shadow: 0 3px 15px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section - FIXED */
+        .hero {
+            position: relative;
+            min-height: 100vh; /* Changed to full viewport height */
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), 
+                        url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Added for better visual effect */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .package-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .package-image {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .package-card:hover .package-image img {
+            transform: scale(1.05);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .package-content {
+            padding: 20px;
+        }
+
+        .package-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .package-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .package-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .package-features {
+            margin-bottom: 20px;
+        }
+
+        .package-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .package-features i {
+            margin-right: 10px;
+            color: var(--success);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slide {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        .client-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid var(--secondary);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .client-name {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-dot.active {
+            background-color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            transition: color 0.3s;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background-color: var(--success);
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .package-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="asest/Hero _section/panda-removebg-preview.png" alt="Ceylon Panda Travel Logo" class="logo-img">
+                <span>Ceylon Panda</span>
+            </a>
+
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section - FIXED -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Discover Sri Lanka with Ceylon Panda</h1>
+            <p>Experience the journey of a lifetime with our expertly crafted travel packages and personalized services.</p>
+            <a href="#packages" class="btn btn-accent">Explore Packages</a>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages">
+        <div class="container">
+            <h2 class="section-title">Our Tour Packages</h2>
+            
+            <div class="package-filter">
+                <button class="filter-btn active" data-filter="all">All Packages</button>
+                <button class="filter-btn" data-filter="adventure">Adventure</button>
+                <button class="filter-btn" data-filter="cultural">Cultural</button>
+                <button class="filter-btn" data-filter="beach">Beach</button>
+                <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+            </div>
+            
+            <div class="packages-grid">
+                <!-- Package 1 -->
+                <div class="package-card" data-category="cultural">
+                    <div class="package-image">
+                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cultural Triangle Tour">
+                        <div class="package-badge">Popular</div>
+                    </div>
+                    <div class="package-content">
+                        <h3>Cultural Triangle Tour</h3>
+                        <div class="package-meta">
+                            <span><i class="far fa-clock"></i> 5 Days</span>
+                            <span><i class="fas fa-users"></i> 2-10 People</span>
+                        </div>
+                        <div class="package-price">$450 <span>/person</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Sigiriya Rock Fortress</li>
+                            <li><i class="fas fa-check"></i> Ancient City of Polonnaruwa</li>
+                            <li><i class="fas fa-check"></i> Dambulla Cave Temple</li>
+                            <li><i class="fas fa-check"></i> Kandy Temple of the Tooth</li>
+                        </ul>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="Cultural Triangle Tour">Book Now</button>
+                    </div>
+                </div>
+                
+                <!-- Package 2 -->
+                <div class="package-card" data-category="adventure">
+                    <div class="package-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Hill Country Adventure">
+                        <div class="package-badge">Adventure</div>
+                    </div>
+                    <div class="package-content">
+                        <h3>Hill Country Adventure</h3>
+                        <div class="package-meta">
+                            <span><i class="far fa-clock"></i> 7 Days</span>
+                            <span><i class="fas fa-users"></i> 2-8 People</span>
+                        </div>
+                        <div class="package-price">$680 <span>/person</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Hiking in Horton Plains</li>
+                            <li><i class="fas fa-check"></i> Train Ride to Ella</li>
+                            <li><i class="fas fa-check"></i> Tea Plantation Tours</li>
+                            <li><i class="fas fa-check"></i> Waterfall Visits</li>
+                        </ul>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="Hill Country Adventure">Book Now</button>
+                    </div>
+                </div>
+                
+                <!-- Package 3 -->
+                <div class="package-card" data-category="beach">
+                    <div class="package-image">
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Beach Paradise">
+                        <div class="package-badge">Relaxation</div>
+                    </div>
+                    <div class="package-content">
+                        <h3>Beach Paradise Tour</h3>
+                        <div class="package-meta">
+                            <span><i class="far fa-clock"></i> 6 Days</span>
+                            <span><i class="fas fa-users"></i> 2-12 People</span>
+                        </div>
+                        <div class="package-price">$520 <span>/person</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Mirissa Beach & Whale Watching</li>
+                            <li><i class="fas fa-check"></i> Unawatuna Beach Relaxation</li>
+                            <li><i class="fas fa-check"></i> Galle Fort Exploration</li>
+                            <li><i class="fas fa-check"></i> Seafood Dining Experience</li>
+                        </ul>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="Beach Paradise Tour">Book Now</button>
+                    </div>
+                </div>
+                
+                <!-- Package 4 -->
+                <div class="package-card" data-category="wildlife">
+                    <div class="package-image">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Wildlife Safari">
+                        <div class="package-badge">Safari</div>
+                    </div>
+                    <div class="package-content">
+                        <h3>Wildlife Safari Adventure</h3>
+                        <div class="package-meta">
+                            <span><i class="far fa-clock"></i> 4 Days</span>
+                            <span><i class="fas fa-users"></i> 2-6 People</span>
+                        </div>
+                        <div class="package-price">$380 <span>/person</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Yala National Park Safari</li>
+                            <li><i class="fas fa-check"></i> Udawalawe Elephant Sanctuary</li>
+                            <li><i class="fas fa-check"></i> Bird Watching Tours</li>
+                            <li><i class="fas fa-check"></i> Jungle Camping Experience</li>
+                        </ul>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="Wildlife Safari Adventure">Book Now</button>
+                    </div>
+                </div>
+                
+                <!-- Package 5 -->
+                <div class="package-card" data-category="cultural">
+                    <div class="package-image">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Spiritual Journey">
+                        <div class="package-badge">Spiritual</div>
+                    </div>
+                    <div class="package-content">
+                        <h3>Spiritual Journey</h3>
+                        <div class="package-meta">
+                            <span><i class="far fa-clock"></i> 5 Days</span>
+                            <span><i class="fas fa-users"></i> 2-10 People</span>
+                        </div>
+                        <div class="package-price">$420 <span>/person</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Temple of the Sacred Tooth Relic</li>
+                            <li><i class="fas fa-check"></i> Ancient Buddhist Monasteries</li>
+                            <li><i class="fas fa-check"></i> Meditation Sessions</li>
+                            <li><i class="fas fa-check"></i> Traditional Healing Practices</li>
+                        </ul>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="Spiritual Journey">Book Now</button>
+                    </div>
+                </div>
+                
+                <!-- Package 6 -->
+                <div class="package-card" data-category="adventure">
+                    <div class="package-image">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Mountain Trekking">
+                        <div class="package-badge">Trekking</div>
+                    </div>
+                    <div class="package-content">
+                        <h3>Mountain Trekking Expedition</h3>
+                        <div class="package-meta">
+                            <span><i class="far fa-clock"></i> 8 Days</span>
+                            <span><i class="fas fa-users"></i> 2-6 People</span>
+                        </div>
+                        <div class="package-price">$750 <span>/person</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Adam's Peak Sunrise Hike</li>
+                            <li><i class="fas fa-check"></i> Knuckles Mountain Range</li>
+                            <li><i class="fas fa-check"></i> Waterfall Rappelling</li>
+                            <li><i class="fas fa-check"></i> Camping Under the Stars</li>
+                        </ul>
+                        <button class="btn book-package-btn" style="width: 100%;" data-package="Mountain Trekking Expedition">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Travelers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="client-img">
+                    <p class="testimonial-text">"Our Cultural Triangle Tour with Ceylon Panda was absolutely perfect. Every detail was taken care of, and we had the most memorable experience. Highly recommended!"</p>
+                    <p class="client-name">- Sarah Johnson</p>
+                </div>
+                <div class="testimonial-slide">
+                    <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client" class="client-img">
+                    <p class="testimonial-text">"The personalized service we received was exceptional. Ceylon Panda understood exactly what we were looking for and delivered beyond our expectations."</p>
+                    <p class="client-name">- Michael Rodriguez</p>
+                </div>
+                <div class="testimonial-slide">
+                    <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Client" class="client-img">
+                    <p class="testimonial-text">"I've traveled with many agencies, but Ceylon Panda stands out for their attention to detail and customer care. Our Sri Lanka trip was magical!"</p>
+                    <p class="client-name">- Emily Chen</p>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Ceylon Panda</h3>
+                    <p>Your trusted partner in creating unforgettable travel experiences in Sri Lanka.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> +94 75 654 3343</li>
+                        <li><i class="fas fa-envelope"></i> ceylonpandatravels@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1BJtVpURjg/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/message/H2N47GJBZOI7I1"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Ceylon Panda. All rights reserved. "Developed by Wave Link"</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2>Book Your Package</h2>
+            <form id="modalBookingForm">
+                <div class="form-group">
+                    <label for="modalName">Full Name</label>
+                    <input type="text" id="modalName" class="form-control" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalEmail">Email Address</label>
+                    <input type="email" id="modalEmail" class="form-control" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalPhone">Phone Number</label>
+                    <input type="tel" id="modalPhone" class="form-control" placeholder="+1 234 567 8900">
+                </div>
+                <div class="form-group">
+                    <label for="modalPackage">Selected Package</label>
+                    <input type="text" id="modalPackage" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="modalTravelers">Number of Travelers</label>
+                    <input type="number" id="modalTravelers" class="form-control" min="1" max="20" value="2">
+                </div>
+                <div class="form-group">
+                    <label for="modalDate">Preferred Travel Date</label>
+                    <input type="date" id="modalDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalMessage">Special Requests</label>
+                    <textarea id="modalMessage" class="form-control" rows="4" placeholder="Any special requirements or requests..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-accent" style="width: 100%;">Confirm Booking</button>
+                <div class="success-message" id="modalSuccessMessage">
+                    <i class="fas fa-check-circle"></i> Thank you! Your booking has been confirmed.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function checkThemePreference() {
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+        
+        function toggleTheme() {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        }
+        
+        checkThemePreference();
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Package Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const packageCards = document.querySelectorAll('.package-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active filter button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                // Filter package cards
+                packageCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Testimonial Slider
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Auto slide change
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Modal Booking Form
+        const bookingModal = document.getElementById('bookingModal');
+        const modalClose = document.getElementById('modalClose');
+        const bookPackageBtns = document.querySelectorAll('.book-package-btn');
+        const modalBookingForm = document.getElementById('modalBookingForm');
+        const modalPackageInput = document.getElementById('modalPackage');
+        const modalSuccessMessage = document.getElementById('modalSuccessMessage');
+
+        // Open modal when book button is clicked
+        bookPackageBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                const packageName = button.getAttribute('data-package');
+                modalPackageInput.value = packageName;
+                bookingModal.style.display = 'flex';
+            });
+        });
+
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            bookingModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === bookingModal) {
+                bookingModal.style.display = 'none';
+            }
+        });
+
+        // Modal form submission
+        modalBookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show success message
+            modalSuccessMessage.style.display = 'block';
+            
+            // Reset form
+            modalBookingForm.reset();
+            
+            // Close modal after 3 seconds
+            setTimeout(() => {
+                bookingModal.style.display = 'none';
+                modalSuccessMessage.style.display = 'none';
+            }, 3000);
+        });
+
+        // Set minimum date for travel date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('modalDate').min = today;
+
+        // Animate package cards on scroll
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.package-card');
+            
+            cards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 150;
+                
+                if (cardTop < window.innerHeight - cardVisible) {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.classList.add('animate');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

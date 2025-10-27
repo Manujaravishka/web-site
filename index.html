@@ -101,6 +101,15 @@
             transition: all 0.3s ease;
         }
 
+        .main-header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        body.dark-mode .main-header.scrolled {
+            background-color: rgba(30, 30, 30, 0.95);
+        }
+
         /* Container */
         .header-container {
             display: flex;
@@ -148,6 +157,22 @@
             color: var(--text-color);
             font-weight: 500;
             transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -169,12 +194,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             margin-left: 10px;
         }
 
         .theme-toggle:hover {
             background-color: rgba(0, 0, 0, 0.1);
+            transform: rotate(15deg);
         }
 
         body.dark-mode .theme-toggle:hover {
@@ -211,6 +237,11 @@
             font-size: 26px;
             color: var(--primary);
             cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
         }
 
         /* Mobile responsive */
@@ -225,10 +256,14 @@
                 padding: 20px;
                 box-shadow: 0 5px 15px var(--shadow);
                 display: none;
+                border-radius: 0 0 0 10px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
             }
 
             .nav-links.show {
                 display: flex;
+                transform: translateX(0);
             }
 
             .mobile-menu-btn {
@@ -237,7 +272,24 @@
 
             .nav-links li {
                 margin: 10px 0;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: opacity 0.3s, transform 0.3s;
             }
+
+            .nav-links.show li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .nav-links.show li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.show li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-links.show li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-links.show li:nth-child(4) { transition-delay: 0.25s; }
+            .nav-links.show li:nth-child(5) { transition-delay: 0.3s; }
+            .nav-links.show li:nth-child(6) { transition-delay: 0.35s; }
+            .nav-links.show li:nth-child(7) { transition-delay: 0.4s; }
+            .nav-links.show li:nth-child(8) { transition-delay: 0.45s; }
             
             .header-controls {
                 display: flex;
@@ -275,10 +327,12 @@
             background-position: center;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
+            transform: scale(1.1);
         }
 
         .hero-slide.active {
             opacity: 1;
+            transform: scale(1);
         }
 
         .hero-slide::after {
@@ -297,16 +351,32 @@
             padding: 20px;
             position: relative;
             z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero h1 {
             font-size: clamp(2rem, 9vw, 4rem);
             margin-bottom: 20px;
+            animation: fadeInUp 1s ease forwards;
         }
 
         .hero p {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero .btn {
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
         }
 
         .hero-indicators {
@@ -361,6 +431,23 @@
             cursor: pointer;
             transition: all 0.3s;
             border-bottom: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .booking-nav-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .booking-nav-item:hover:before {
+            left: 100%;
         }
         
         .booking-nav-item.active {
@@ -388,8 +475,8 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .form-row {
@@ -415,7 +502,7 @@
             border: 1px solid var(--border-color);
             border-radius: 4px;
             font-size: 16px;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
             background-color: var(--bg-color);
             color: var(--text-color);
         }
@@ -424,6 +511,7 @@
             border-color: var(--secondary);
             outline: none;
             box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
         }
         
         .form-hint {
@@ -437,6 +525,37 @@
             margin-top: 20px;
             padding: 15px;
             font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .submit-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
         }
 
         /* Email Confirmation Styles */
@@ -472,6 +591,12 @@
             color: var(--success);
             margin-bottom: 20px;
             display: block;
+            animation: bounce 1s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
         }
 
         .email-confirmation h3 {
@@ -498,6 +623,13 @@
             color: var(--secondary);
             font-weight: 600;
             margin: 10px 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
         }
 
         .email-confirmation .btn {
@@ -608,6 +740,23 @@
             font-weight: 600;
             transition: all 0.3s ease;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .about-btn:hover:before {
+            left: 100%;
         }
 
         .about-btn:hover {
@@ -693,6 +842,7 @@
             outline: none;
             border-color: var(--secondary);
             box-shadow: 0 2px 15px rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
         }
 
         .search-icon {
@@ -701,6 +851,11 @@
             top: 50%;
             transform: translateY(-50%);
             color: #777;
+            transition: color 0.3s;
+        }
+
+        .search-bar:focus + .search-icon {
+            color: var(--secondary);
         }
 
         /* Carousel Container */
@@ -732,6 +887,13 @@
             box-shadow: 0 5px 15px var(--shadow);
             transition: all 0.3s ease;
             background-color: var(--card-bg);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .sri-lanka-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .sri-lanka-card:hover {
@@ -741,6 +903,7 @@
 
         .image-container {
             position: relative;
+            overflow: hidden;
         }
 
         .sri-lanka-img {
@@ -768,6 +931,12 @@
             box-sizing: border-box;
             text-align: left;
             letter-spacing: 0.5px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sri-lanka-card:hover .image-title {
+            transform: translateY(0);
         }
 
         .card-content {
@@ -791,6 +960,23 @@
             font-weight: 500;
             transition: all 0.3s ease;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .card-btn:hover:before {
+            left: 100%;
         }
 
         .card-btn:hover {
@@ -879,6 +1065,7 @@
             background-color: var(--secondary);
             color: white;
             border-color: var(--secondary);
+            transform: translateY(-2px);
         }
 
         .gallery-grid {
@@ -896,10 +1083,17 @@
             height: 250px;
             cursor: pointer;
             transition: transform 0.3s ease;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .gallery-item.animate {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
         }
 
         .gallery-item img {
@@ -977,6 +1171,12 @@
             max-width: 100%;
             max-height: 80vh;
             border-radius: 8px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-modal.active .lightbox-img {
+            transform: scale(1);
         }
 
         .lightbox-caption {
@@ -992,11 +1192,12 @@
             color: white;
             font-size: 40px;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s;
         }
 
         .lightbox-close:hover {
             color: var(--secondary);
+            transform: rotate(90deg);
         }
 
         .lightbox-nav {
@@ -1013,12 +1214,13 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             font-size: 24px;
         }
 
         .lightbox-nav:hover {
             background-color: rgba(255,255,255,0.3);
+            transform: translateY(-50%) scale(1.1);
         }
 
         .lightbox-prev {
@@ -1072,7 +1274,15 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             background: var(--card-bg);
             transition: transform .25s ease;
+            opacity: 0;
+            transform: translateY(20px);
         }
+
+        .blog-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .blog-card:hover { 
             transform: translateY(-6px); 
         }
@@ -1174,7 +1384,14 @@
             font-size: 1.4rem;
             cursor: pointer;
             padding: 8px;
+            transition: color 0.3s, transform 0.3s;
         }
+
+        .modal-close:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
         .modal-nav {
             position: absolute;
             top: 50%;
@@ -1187,7 +1404,14 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 1.6rem;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
+        .modal-nav:hover {
+            background: rgba(0,0,0,0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+
         .modal-prev { left: 18px; }
         .modal-next { right: 18px; }
 
@@ -1221,6 +1445,13 @@
             text-align: center;
             box-shadow: 0 4px 12px var(--shadow);
             transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .service-card:hover {
@@ -1231,6 +1462,11 @@
             font-size: 40px;
             color: var(--secondary);
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2);
         }
 
         .service-card h3 {
@@ -1269,6 +1505,11 @@
             object-fit: cover;
             margin: 0 auto 20px;
             border: 3px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-slide:hover .client-img {
+            transform: scale(1.1);
         }
 
         .testimonial-text {
@@ -1296,11 +1537,16 @@
             background-color: #ddd;
             margin: 0 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .slider-dot.active {
             background-color: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .slider-dot:hover {
+            transform: scale(1.2);
         }
 
         /* Contact Section */
@@ -1328,6 +1574,11 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-detail:hover {
+            transform: translateX(5px);
         }
 
         .contact-detail i {
@@ -1335,6 +1586,11 @@
             color: var(--secondary);
             font-size: 20px;
             width: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-detail:hover i {
+            color: var(--accent);
         }
 
         .contact-form input,
@@ -1347,6 +1603,15 @@
             font-size: 16px;
             background-color: var(--bg-color);
             color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
         }
 
         .contact-form textarea {
@@ -1415,6 +1680,11 @@
             width: 40px;
             height: 2px;
             background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .footer-column:hover h3:after {
+            width: 80px;
         }
 
         .footer-links li {
@@ -1422,11 +1692,13 @@
         }
 
         .footer-links a {
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
         }
 
         .footer-links a:hover {
             color: var(--secondary);
+            transform: translateX(5px);
         }
 
         .social-links {
@@ -1448,13 +1720,89 @@
 
         .social-links a:hover {
             background-color: var(--secondary);
-            transform: translateY(-3px);
+            transform: translateY(-3px) rotate(5deg);
         }
 
         .copyright {
             text-align: center;
             padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Section Animation Classes */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: width 0.5s ease;
+        }
+
+        .section-title.animate:after {
+            width: 100px;
         }
 
         /* Responsive Styles */
@@ -1615,7 +1963,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#comprehensive-booking" class="btn">Book Now</a></li>
+                <li><a href="packages.html" class="btn">Packages</a></li>
             </ul>
         </div>
     </header>
@@ -2438,6 +2786,13 @@
                     <h3>Hotel Reservations</h3>
                     <p>From luxury resorts to cozy boutique hotels, we secure accommodations that match your preferences.</p>
                 </div>
+                 <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>Adventure Tour</h3>
+                    <p></p>
+                </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-map-marked-alt"></i>
@@ -2617,7 +2972,17 @@
         const navLinks = document.querySelector('.nav-links');
 
         mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            navLinks.classList.toggle('show');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
 
         // Hero Section Slideshow
@@ -2634,6 +2999,13 @@
             
             heroSlides[currentHeroSlide].classList.add('active');
             heroIndicators[currentHeroSlide].classList.add('active');
+            
+            // Animate hero content
+            const heroContent = document.querySelector('.hero-content');
+            heroContent.classList.remove('animate');
+            setTimeout(() => {
+                heroContent.classList.add('animate');
+            }, 100);
         }
 
         function startHeroSlideshow() {
@@ -2653,6 +3025,11 @@
                 startHeroSlideshow();
             });
         });
+
+        // Initialize hero content animation
+        setTimeout(() => {
+            document.querySelector('.hero-content').classList.add('animate');
+        }, 500);
 
         // Start the hero slideshow
         startHeroSlideshow();
@@ -2699,7 +3076,7 @@
                     });
                     
                     // Close mobile menu if open
-                    navLinks.classList.remove('active');
+                    navLinks.classList.remove('show');
                 }
             });
         });
@@ -3318,6 +3695,24 @@ This message was sent through the Ceylon Panda website contact form.`;
                 }
             });
         })();
+
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.section-title, .sri-lanka-card, .gallery-item, .service-card, .blog-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+
+        // Initialize scroll animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
