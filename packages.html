@@ -157,12 +157,35 @@
             color: white;
             text-align: center;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), 
-                        url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80');
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            transition: opacity 1.5s ease-in-out;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .hero-bg.active {
+            opacity: 1;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)); */
+            z-index: 2;
         }
 
         .hero-content {
@@ -170,7 +193,7 @@
             margin: 0 auto;
             padding: 20px;
             position: relative;
-            z-index: 2;
+            z-index: 3;
             animation: fadeInUp 1s ease;
         }
 
@@ -221,6 +244,31 @@
 
         .btn-accent:hover {
             background-color: #c0392b;
+        }
+
+        /* Hero Image Controls */
+        .hero-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5); 
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-dot.active {
+            background-color: white;
+            transform: scale(1.2);
         }
 
         /* Packages Section */
@@ -679,13 +727,30 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Background images with overlay -->
+        <div class="hero-bg active" style="background-image: url('https://media.istockphoto.com/id/1361331752/photo/herd-of-elephants-in-sri-lanka.webp?a=1&b=1&s=612x612&w=0&k=20&c=VNPsRY-bZrjhWSx2X4EuKfD9sCoWWwr_QVcpzxDnnz0=')"></div>
+        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1612862862126-865765df2ded?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074')"></div>
+        <div class="hero-bg" style="background-image: url('https://plus.unsplash.com/premium_photo-1675721097416-a0d853e8cc1f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470')"></div>
+        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1665849050332-8d5d7e59afb6?ixlib=rb-4.1.&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470')"></div>
+        
+        <div class="hero-bg-overlay"></div>
+        
         <div class="container hero-content">
             <h1>Discover Sri Lanka with Ceylon Panda</h1>
             <p>Experience the journey of a lifetime with our expertly crafted travel packages and personalized services.</p>
             <a href="#packages" class="btn btn-accent">Explore Packages</a>
         </div>
+        
+        <!-- Hero image controls -->
+        <div class="hero-controls">
+            <div class="hero-dot active" data-index="0"></div>
+            <div class="hero-dot" data-index="1"></div>
+            <div class="hero-dot" data-index="2"></div>
+            <div class="hero-dot" data-index="3"></div>
+        </div>
     </section>
 
+    <!-- Rest of your content remains exactly the same -->
     <!-- Packages Section -->
     <section id="packages" class="packages">
         <div class="container">
@@ -693,10 +758,11 @@
             
             <div class="package-filter">
                 <button class="filter-btn active" data-filter="all">All Packages</button>
-                <button class="filter-btn" data-filter="cultural">Cultural</button>
+                <!-- <button class="filter-btn" data-filter="cultural">Cultural</button>
                 <button class="filter-btn" data-filter="wildlife">Wildlife</button>
                 <button class="filter-btn" data-filter="beach">Beach</button>
                 <button class="filter-btn" data-filter="adventure">Adventure</button>
+                 -->
             </div>
             
             <div class="packages-grid">
@@ -704,7 +770,7 @@
                 <div class="package-card" data-category="cultural wildlife">
                     <div class="package-image">
                         <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Sigiriya Rock Fortress">
-                        <div class="package-badge">Popular</div>
+                        <div class="package-badge"></div>
                     </div>
                     <div class="package-content">
                         <h3>3 Days Cultural & Wildlife Tour</h3>
@@ -749,7 +815,7 @@
                 <div class="package-card" data-category="cultural adventure beach">
                     <div class="package-image">
                         <img src="https://images.unsplash.com/photo-1590239926044-4131f5d0654d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Nine Arch Bridge Ella">
-                        <div class="package-badge">Best Seller</div>
+                        <div class="package-badge"></div>
                     </div>
                     <div class="package-content">
                         <h3>5 Days Cultural Triangle & Hill Country</h3>
@@ -797,7 +863,7 @@
                 <div class="package-card" data-category="adventure wildlife beach">
                     <div class="package-image">
                         <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Wildlife Safari">
-                        <div class="package-badge">Premium</div>
+                        <div class="package-badge"></div>
                     </div>
                     <div class="package-content">
                         <h3>7 Days Comprehensive Sri Lanka Tour</h3>
@@ -839,10 +905,6 @@
                         <button class="btn book-package-btn" style="width: 100%;" data-package="7 Days Comprehensive Sri Lanka Tour">Book Now</button>
                     </div>
                 </div>
-                
-                
-                
-               
             </div>
         </div>
     </section>
@@ -1139,6 +1201,57 @@
 
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
+
+        // Hero Image Rotation Functionality
+        const heroBackgrounds = document.querySelectorAll('.hero-bg');
+        const heroDots = document.querySelectorAll('.hero-dot');
+        let currentHeroIndex = 0;
+        let heroInterval;
+
+        function showHeroImage(index) {
+            // Remove active class from all backgrounds and dots
+            heroBackgrounds.forEach(bg => bg.classList.remove('active'));
+            heroDots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current background and dot
+            heroBackgrounds[index].classList.add('active');
+            heroDots[index].classList.add('active');
+            
+            currentHeroIndex = index;
+        }
+
+        function nextHeroImage() {
+            let nextIndex = (currentHeroIndex + 1) % heroBackgrounds.length;
+            showHeroImage(nextIndex);
+        }
+
+        // Start automatic rotation
+        function startHeroRotation() {
+            heroInterval = setInterval(nextHeroImage, 5000); // Change every 5 seconds
+        }
+
+        // Stop rotation when user interacts with dots
+        function stopHeroRotation() {
+            clearInterval(heroInterval);
+        }
+
+        // Add click event to dots
+        heroDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopHeroRotation();
+                showHeroImage(index);
+                // Restart rotation after 10 seconds of inactivity
+                setTimeout(startHeroRotation, 10000);
+            });
+        });
+
+        // Pause rotation when hovering over hero section
+        const heroSection = document.querySelector('.hero');
+        heroSection.addEventListener('mouseenter', stopHeroRotation);
+        heroSection.addEventListener('mouseleave', startHeroRotation);
+
+        // Initialize hero rotation
+        startHeroRotation();
     </script>
 </body>
 </html>
